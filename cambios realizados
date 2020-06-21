@@ -1,0 +1,33 @@
+"""cambie la clase de  instituto por esta 
+nueva versiopn ya que los modelos base tienen gran parte de los campos que necesito;
+
+si la clase no es quien maneja la operacion no se coloca One2many sololo tendra la clase que requiere llamarla"""
+
+"""Clase vieja"""
+
+class instituciones(models.Model):
+    """Tabla Registro Maestro de Instituciones"""
+    _name = 'instituciones'
+    _inherit = 'res_company'
+    #_rec_name = ''
+    rif = fields.Char(string='RIF de la Institucion',default='RIF', traslate=True, readonly=False,  size=20, required=False, copy=True, help='RIF de la institucion')
+    razon_social_id = fields.Many2one('res.company',string='Razon social de la Institucion',default='Razon social', traslate=True,  size=20, required='True', copy=True, help='Razon social de la Institucion')
+    acronimo = fields.Char(string='Acronimo de la Institucion', default='Acronimo', size=20, traslate=True, readonly=False, required=False, copy=True, help='Acronimo de la Institucion')
+    nombre_institucion = fields.Char(string='Nombr del Institutoe', default='Nombres', size=20, traslate=True, readonly=False, required=False, copy=True, help='Nombre de la Institucion')
+    direccion = fields.Html('Direccion', help='Direccion de la Institucion')
+    telefono = fields.Integer(string='Telefono', default=0,  required=True, readonly=False, copy=False, help='Telefono de la Institucion')
+    tipo_institucion_id = fields.Many2one('tipos_instituciones', string='Tipo de Institucion', required=True, readonly=False, help='Tipo de Institucion')
+    nombre_instituto_ids = fields.One2many('pasantias','nombre_instituto_id', string='Nombre del Institulo', required=True, readonly=False, help='Nombre del Instituto donde procede')
+
+
+
+"""Clase nueva"""
+
+class instituciones(models.Model):
+    """Tabla Registro Maestro de Instituciones"""
+    _name = 'instituciones'
+    _inherits = 'res_company'
+    #_rec_name = ''
+    rif = fields.Char(string='RIF de la Institucion',default='RIF', traslate=True, readonly=False,  size=20, required=False, copy=True, help='RIF de la institucion')
+    acronimo = fields.Char(string='Acronimo de la Institucion', default='Acronimo', size=20, traslate=True, readonly=False, required=False, copy=True, help='Acronimo de la Institucion')
+    tipo_institucion_id = fields.Many2one('tipos_instituciones', string='Tipo de Institucion', required=True, readonly=False, help='Tipo de Institucion')

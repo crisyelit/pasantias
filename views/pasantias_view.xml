@@ -1,0 +1,828 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <!-- MODELO: Registro Maestro de Pasantias -->
+    <!-- VISTA FORM: Pasantias/Registro Maestro de Pasantias -->
+    <record model="ir.ui.view" id="view_pasantias_form">
+        <field name="name">pasantias.form</field>
+        <field name="model">pasantias</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="pasantias">
+            <group col="4" colspan="2">
+                <field name="pasante_id" select="1"/>
+                <field name="promotor_id" select="0"/>
+                <field name="departamento_area" select="0"/>
+                <field name="tipo_pasantias_id" select="0"/>
+                <field name="condicion_nofirmantes_id" select="0"/>
+                <field name="turnos_id" select="0"/>
+                <field name="condiciones_registro_id" select="0"/>
+                <field name="active" select="0"/>
+                <separator string='Observaciones' colspan="4"/>
+                <field name="observacion" colspan="4" nolabel="1" select="0"/>
+        <notebook colspan="4">
+             <page name="convenios_id" string="Convenio">
+                <group col="4" colspan="2">
+                    <field name="convenios_id" select="1"/>
+                    <field name="pasantia_desde" select="3"/>
+                    <field name="pasantia_hasta" select="0"/>
+                    <field name="numero_semana" select="0"/>
+                    <field name="fecha_recepcion" select="0"/>
+                </group>
+             </page> 
+             <page name="prorroga_desde" string="Prorroga">
+                <group col="4" colspan="2">
+                    <field name="prorroga_desde" select="1"/>
+                    <field name="prorroga_hasta" select="2"/>
+                    <field name="semana_prorroga" select="0"/>
+                    <field name="turno_prorroga_id" select="0"/>
+                <separator string='Observacion de prorroga' colspan="4"/>
+                <field name="observaciones_prorroga" colspan="4" nolabel="1" select="0"/>
+                </group>
+             </page> 
+             <page name="nombre_instituto_id" string="Institucion">
+                <group col="4" colspan="2">
+                    <field name="nivel_academico_id" select="1"/>
+                    <field name="nombre_instituto_id" select="2"/>
+                    <field name="tipo_especialidades_id" select="2"/>
+                </group>
+             </page> 
+             <page name="Beneficiario" string="Beneficiario">
+                <group col="4" colspan="2">
+                    <field name="beneficiario_ids" select="1"/>
+                </group>
+             </page>
+        </notebook>
+            </group>
+            </form>
+        </field>
+    </record>
+    <!-- FIN VISTA FORM: Pasantias/Registro Maestro de Pasantias -->
+
+    <!-- VISTA VISTA search: Pasantias/Registro Maestro de Pasantias -->
+    <record model="ir.ui.view" id="pasantias_search_view">
+        <field name="name">pasantias.search</field>
+        <field name="model">pasantias</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="pasante_id"/>
+                <field name="convenios_id"/>
+                <field name="promotor_id"/>
+                <field name="active"/>
+                <filter name="filtro_promotor_id" string="Promotor" domain="[('promotor_id','=',uid)]"/>
+                <filter name="filtro_nombre_instituto_id" string="Instituto" domain="[('nombre_instituto_id','=',uid)]"/>
+                <filter name="agrupar_convenios_id" string="Convenios" context="{'group_by':'convenios_id'}"/>
+            </search>
+        </field>
+    </record>
+    <!-- VISTA TREE: Pasantias/Registro Maestro de Pasantias -->
+    <record model="ir.ui.view" id="view_pasantias_tree">
+        <field name="name">pasantias.tree</field>
+        <field name="model">pasantias</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="pasantias">
+                <field name="pasante_id"/>
+                <field name="convenios_id"/>
+                <field name="promotor_id"/>
+                <field name="pasantia_desde"/>
+                <field name="pasantia_hasta"/>
+                <field name="nombre_instituto_id"/>
+
+            </tree>
+        </field>
+    </record>
+    <!-- FIN VISTA TREE: Pasantias/Registro Maestro de Pasantias -->
+
+    <!-- ACCION: Pasantias/Registro Maestro de Pasantias -->
+    <record model="ir.actions.act_window" id="action_pasantias">
+        <field name="name">Registro Maestro de Pasantias</field>
+        <field name="res_model">pasantias</field>
+        <field name="view_mode">tree,form,calendar,gantt,graph,kanban</field>
+    </record>
+    <!-- FIN MODELO: Registro Maestro de Pasantias -->
+    
+
+    <!-- MODELO: Tipos de Alergias -->
+    <!-- VISTA FORM: Pasantias/Configuracion/Tipos de Alergias -->
+    <record model="ir.ui.view" id="view_tipos_alergias_form">
+        <field name="name">tipos.alergias.form</field>
+        <field name="model">tipos.alergias</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="tipos_alergias">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="tipo_alergia" select="2"/>
+
+            </group>
+            </form>
+        </field>
+    </record>
+    <!-- FIN VISTA FORM: Pasantias/Configuracion/Tipos de Alergias -->
+
+    <!-- VISTA TREE: Pasantias/Configuracion/Tipos de Alergias -->
+    <record model="ir.ui.view" id="view_tipos_alergias_tree">
+        <field name="name">tipos.alergias.tree</field>
+        <field name="model">tipos.alergias</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="tipos.alergias">
+                <field name="codigo"/>
+                <field name="tipo_alergia"/>
+
+            </tree>
+        </field>
+    </record>
+    <!-- FIN VISTA TREE: Pasantias/Configuracion/Tipos de Alergias -->
+
+    <!-- ACCION: Tipos de Alergias -->
+    <record model="ir.actions.act_window" id="action_tipos_alergias">
+        <field name="name">Tipos de Alergias</field>
+        <field name="res_model">tipos.alergias</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- FIN MODELO: Tipos de Alergias -->
+
+    
+    <!-- MODELO: Registro Maestro de Instituciones -->  
+    <!-- VISTA FORM: Pasantias/Registro Maestro de Instituciones -->
+    <record model="ir.ui.view" id="view_instituciones_form">
+        <field name="name">instituciones.form</field>
+        <field name="model">instituciones</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="instituciones">
+            <group col="4" colspan="2">
+                <field name="rif" select="1"/>
+                <field name="acronimo" select="0"/>
+            </group>
+            </form>
+        </field>
+    </record>
+    <!-- FIN VISTA FORM: Pasantias/Registro Maestro de Instituciones -->
+
+    <!-- VISTA TREE: Pasantias/Registro Maestro de Instituciones -->
+    <record model="ir.ui.view" id="view_instituciones_tree">
+        <field name="name">instituciones.tree</field>
+        <field name="model">instituciones</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="instituciones">
+                <field name="rif"/>
+                <field name="acronimo"/>
+
+            </tree>
+        </field>
+    </record>
+    <!-- FIN VISTA TREE: Pasantias/Registro Maestro de Instituciones -->
+
+    <!-- ACCION: Registro Maestro de Instituciones -->
+    <record model="ir.actions.act_window" id="action_instituciones">
+        <field name="name">Registro Maestro de Instituciones</field>
+        <field name="res_model">instituciones</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- FIN MODELO: Registro Maestro de Instituciones -->
+
+
+    <!-- MODELO: Tipo de Pasantias -->   
+    <!-- VISTA FORM: Pasantias/Tipo de Pasantias -->
+    <record model="ir.ui.view" id="view_tipos_pasantias_form">
+        <field name="name">tipos.pasantias.form</field>
+        <field name="model">tipos.pasantias</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="tipos_pasantias">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="tipo_pasantia" select="2"/>
+
+            </group>
+            </form>
+        </field>
+    </record>
+    <!-- FIN VISTA FORM: Pasantias/Tipo de Pasantias -->
+
+    <!-- VISTA TREE: Pasantias/Tipo de Pasantias -->
+    <record model="ir.ui.view" id="view_tipos_pasantias_tree">
+        <field name="name">tipos.pasantias.tree</field>
+        <field name="model">tipos.pasantias</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="tipos_pasantias">
+                <field name="codigo"/>
+                <field name="tipo_pasantia"/>
+
+            </tree>
+        </field>
+    </record>
+    <!-- FIN VISTA TREE: Pasantias/Tipo de Pasantias -->
+
+    <!-- ACCION: Tipo de Pasantias -->
+    <record model="ir.actions.act_window" id="action_tipos_pasantias">
+        <field name="name">Tipo de Pasantias</field>
+        <field name="res_model">tipos.pasantias</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- FIN MODELO: Tipo de Pasantias -->
+
+
+    <!-- MODELO: Registro Maestro de Pasantes -->
+    <!-- VISTA FORM: Pasantias/Registro Maestro de Pasantes -->
+<!--    <record model="ir.ui.view" id="view_pasantes_form">-->
+<!--        <field name="name">pasantes.form</field>-->
+<!--        <field name="model">res.partner</field>-->
+<!--        <field name="type">form</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="pasantes">-->
+<!--            <group col="4" colspan="2">-->
+<!--                <field name="cedula" select="1"/>-->
+<!--                <field name="zurdo" select="0"/>-->
+<!--                <field name="alergias" select="0"/>-->
+<!--                <field name="tipo_alergia" select="0"/>-->
+<!--                <field name="especialidad" select="0"/>-->
+<!--                <field name="nivel_educativo" select="0"/>-->
+<!--            </group>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+    <!-- FIN VISTA FORM: Pasantias/Registro Maestro de Pasantes -->
+
+    <!-- VISTA TREE: Pasantias/Registro Maestro de Pasantes -->
+<!--    <record model="ir.ui.view" id="view_pasantes_tree">-->
+<!--        <field name="name">pasantes.tree</field>-->
+<!--        <field name="model">pasantes</field>-->
+<!--        <field name="type">tree</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree string="pasantes">-->
+<!--                <field name="cedula"/>-->
+<!--                <field name="especialidad"/>-->
+<!--                <field name="nivel_educativo"/>-->
+
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+    <!-- FIN VISTA TREE: Pasantias/Registro Maestro de Pasantes -->
+
+    <!-- ACCION: Registro Maestro de Pasantes -->
+<!--    <record model="ir.actions.act_window" id="action_pasantes">-->
+<!--        <field name="name">Registro Maestro de Pasantes</field>-->
+<!--        <field name="res_model">pasantes</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--    </record>-->
+    <!-- FIN MODELO: Registro Maestro de Pasantes -->
+
+
+    <!-- MODELO: Tipos de Especialidades -->       
+    <!-- VISTA FORM: Pasantias/Configuracion/Tipos de Especialidades -->
+    <record model="ir.ui.view" id="view_tipo_especialidades_form">
+        <field name="name">tipo.especialidades.form</field>
+        <field name="model">tipo.especialidades</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="tipo.especialidades">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="tipo_especialidades" select="2"/>
+
+            </group>
+            </form>
+        </field>
+    </record>
+    <!-- FIN VISTA FORM: Pasantias/Configuracion/Tipos de Especialidades -->
+
+    <!-- VISTA TREE: Pasantias/Configuracion/Tipos de Especialidades -->
+    <record model="ir.ui.view" id="view_tipo_especialidades_tree">
+        <field name="name">tipo.especialidades.tree</field>
+        <field name="model">tipo.especialidades</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="tipo.especialidades">
+                <field name="codigo"/>
+                <field name="tipo_especialidades"/>
+
+            </tree>
+        </field>
+    </record>
+    <!-- FIN VISTA TREE: Pasantias/Configuracion/Tipos de Especialidades -->
+
+    <!-- ACCION: Tipos de Especialidades -->
+    <record model="ir.actions.act_window" id="action_tipo_especialidades">
+        <field name="name">Tipos de Especialidades</field>
+        <field name="res_model">tipo.especialidades</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- FIN MODELO: Tipos de Especialidades -->
+
+
+
+    <!-- MODELO: Registro Maestro de Convenios -->    
+    <!-- VISTA FORM: Pasantias/Registro Maestro de Convenios -->
+    <record model="ir.ui.view" id="view_convenios_form">
+        <field name="name">convenios.form</field>
+        <field name="model">convenios</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="convenios">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="empresa_id" select="2"/>
+                <separator string='Pasantias' colspan="4"/>
+                <field name="fecha_inicio" select="0"/>
+                <field name="fecha_final" select="0"/>
+                <field name="promotor_id" select="0"/>
+
+            </group>
+            </form>
+        </field>
+    </record>
+    <!-- FIN VISTA FORM: Pasantias/Registro Maestro de Convenios -->
+
+    <!-- VISTA TREE: Pasantias/Registro Maestro de Convenios -->
+    <record model="ir.ui.view" id="view_convenios_tree">
+        <field name="name">convenios.tree</field>
+        <field name="model">convenios</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="convenios">
+                <field name="codigo"/>
+                <field name="empresa_id"/>
+                <field name="fecha_inicio"/>
+                <field name="fecha_final"/>
+                <field name="promotor_id"/>
+
+            </tree>
+        </field>
+    </record>
+    <!-- FIN VISTA TREE: Pasantias/Registro Maestro de Convenios -->
+
+    <!-- ACCION: Registro Maestro de Convenios -->
+    <record model="ir.actions.act_window" id="action_convenios">
+        <field name="name">Registro Maestro de Convenios</field>
+        <field name="res_model">convenios</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- FIN MODELO: Registro Maestro de Convenios -->
+        
+    <!-- MODELO: Registro Maestro de Promotores -->
+    <!-- VISTA FORM: Pasantias/Registro Maestro de Promotores -->
+    <record model="ir.ui.view" id="view_promotores_form">
+        <field name="name">promotores.form</field>
+        <field name="model">promotores</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="promotores">
+            <group col="4" colspan="2">
+                <field name="cedula" select="1"/>
+                <field name="nombre_promotor" select="2"/>
+                <field name="apellido_promotor" select="0"/>
+
+            </group>
+            </form>
+        </field>
+    </record>
+    <!-- FIN VISTA FORM: Pasantias/Registro Maestro de Promotores -->
+
+    <!-- VISTA TREE: Pasantias/Registro Maestro de Promotores -->
+    <record model="ir.ui.view" id="view_promotores_tree">
+        <field name="name">promotores.tree</field>
+        <field name="model">promotores</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="promotores">
+                <field name="cedula"/>
+                <field name="nombre_promotor"/>
+                <field name="apellido_promotor"/>
+
+            </tree>
+        </field>
+    </record>
+    <!-- FIN VISTA TREE: Pasantias/Registro Maestro de Promotores -->
+
+    <!-- ACCION: Registro Maestro de Promotores -->
+    <record model="ir.actions.act_window" id="action_promotores">
+        <field name="name">Registro Maestro de Promotores</field>
+        <field name="res_model">promotores</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- FIN MODELO: Registro Maestro de Promotores -->
+    
+    <!-- MODELO: Registro de Condicion de no Firmantes -->  
+    <!-- VISTA FORM: Pasantias/Configuracion/Registro de Condicion de no Firmantes -->
+    <record model="ir.ui.view" id="view_condicion_nofirmante_form">
+        <field name="name">condicion.nofirmante.form</field>
+        <field name="model">condicion.nofirmante</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="condicion_nofirmante">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="condicion_nofirmante" select="2"/>
+
+            </group>
+            </form>
+        </field>
+    </record>
+    <!-- FIN VISTA FORM: Pasantias/Configuracion/Registro de Condicion de no Firmantes -->
+
+    <!-- VISTA TREE: Pasantias/Configuracion/Registro de Condicion de no Firmantes -->
+    <record model="ir.ui.view" id="view_condicion_nofirmante_tree">
+        <field name="name">condicion.nofirmante.tree</field>
+        <field name="model">condicion.nofirmante</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="condicion_nofirmante">
+                <field name="codigo"/>
+                <field name="condicion_nofirmante"/>
+
+            </tree>
+        </field>
+    </record>
+    <!-- FIN VISTA TREE: Pasantias/Configuracion/Registro de Condicion de no Firmantes -->
+
+    <!-- ACCION: Registro de Condicion de no Firmantes -->
+    <record model="ir.actions.act_window" id="action_condicion_nofirmante">
+        <field name="name">Registro de Condicion de no Firmantes</field>
+        <field name="res_model">condicion.nofirmante</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- FIN MODELO: Registro de Condicion de no Firmantes -->
+
+
+    <!-- MODELO: Tipos de Instituciones -->    
+    <!-- VISTA FORM: Pasantias/Configuracion/Tipos de Instituciones -->
+    <record model="ir.ui.view" id="view_tipo_instituciones_form">
+        <field name="name">tipo.instituciones.form</field>
+        <field name="model">tipo.instituciones</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="tipo_instituciones">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="tipo_instituciones" select="2"/>
+
+            </group>
+            </form>
+        </field>
+    </record>
+    <!-- FIN VISTA FORM: Pasantias/Configuracion/Tipos de Instituciones -->
+
+    <!-- VISTA TREE: Pasantias/Configuracion/Tipos de Instituciones -->
+    <record model="ir.ui.view" id="view_tipo_instituciones_tree">
+        <field name="name">tipo.instituciones.tree</field>
+        <field name="model">tipo.instituciones</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="tipo.instituciones">
+                <field name="codigo"/>
+                <field name="tipo_instituciones"/>
+
+            </tree>
+        </field>
+    </record>
+    <!-- FIN VISTA TREE: Pasantias/Configuracion/Tipos de Instituciones -->
+
+    <!-- ACCION: Tipos de Instituciones -->
+    <record model="ir.actions.act_window" id="action_tipo_instituciones">
+        <field name="name">Tipos de Instituciones</field>
+        <field name="res_model">tipo.instituciones</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- FIN MODELO: Tipos de Instituciones -->
+
+
+    <!-- MODELO: Registro Maestro de Beneficiarios -->    
+    <!-- VISTA FORM: Pasantias/Registro Maestro de Beneficiarios -->
+    <record model="ir.ui.view" id="view_beneficiarios_form">
+        <field name="name">beneficiarios.form</field>
+        <field name="model">beneficiarios</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="beneficiarios">
+            <group col="4" colspan="2">
+                <field name="beneficiario_id" select="1"/>
+                <field name="nombre_beneficiario" select="2"/>
+                <field name="apellido_beneficiario" select="0"/>
+                <field name="parentesco_beneficiario_id" select="0"/>
+                <field name="porcentaje" select="0"/>
+
+            </group>
+            </form>
+        </field>
+    </record>
+    <!-- FIN VISTA FORM: Pasantias/Registro Maestro de Beneficiarios -->
+
+    <!-- VISTA TREE: Pasantias/Registro Maestro de Beneficiarios -->
+    <record model="ir.ui.view" id="view_beneficiarios_tree">
+        <field name="name">beneficiarios.tree</field>
+        <field name="model">beneficiarios</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="beneficiarios">
+                <field name="nombre_beneficiario"/>
+                <field name="apellido_beneficiario"/>
+                <field name="parentesco_beneficiario_id"/>
+                <field name="porcentaje"/>
+
+            </tree>
+        </field>
+    </record>
+    <!-- FIN VISTA TREE: Pasantias/Registro Maestro de Beneficiarios -->
+
+    <!-- ACCION: Registro Maestro de Beneficiarios -->
+    <record model="ir.actions.act_window" id="action_beneficiarios">
+        <field name="name">Registro Maestro de Beneficiarios</field>
+        <field name="res_model">beneficiarios</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- FIN MODELO: Registro Maestro de Beneficiarios -->
+
+
+    <!-- MODELO: Tipos de Parentesco -->    
+    <!-- VISTA FORM: Pasantias/Configuracion/Tipos de Parentesco -->
+    <record model="ir.ui.view" id="view_parentescos_form">
+        <field name="name">parentescos.form</field>
+        <field name="model">parentescos</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="parentescos">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="parentesco" select="2"/>
+
+            </group>
+            </form>
+        </field>
+    </record>
+    <!-- FIN VISTA FORM: Pasantias/Configuracion/Tipos de Parentesco -->
+
+    <!-- VISTA TREE: Pasantias/Configuracion/Tipos de Parentesco -->
+    <record model="ir.ui.view" id="view_parentescos_tree">
+        <field name="name">parentescos.tree</field>
+        <field name="model">parentescos</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="parentescos">
+                <field name="codigo"/>
+                <field name="parentesco"/>
+
+            </tree>
+        </field>
+    </record>
+    <!-- FIN VISTA TREE: Pasantias/Configuracion/Tipos de Parentesco -->
+
+    <!-- ACCION: Tipos de Parentesco -->
+    <record model="ir.actions.act_window" id="action_parentescos">
+        <field name="name">Tipos de Parentesco</field>
+        <field name="res_model">parentescos</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- FIN MODELO: Tipos de Parentesco -->
+
+
+    <!-- MODELO: Nivel Academicoas -->    
+    <!-- VISTA FORM: Pasantias/Configuracion/Nivel Academicoas -->
+    <record model="ir.ui.view" id="view_nivel_academico_form">
+        <field name="name">nivel.academico.form</field>
+        <field name="model">nivel.academico</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="nivel_academico">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="nivel_academico" select="2"/>
+            </group>
+            </form>
+        </field>
+    </record>
+    <!-- FIN VISTA FORM: Pasantias/Configuracion/Nivel Academicoas -->
+
+    <!-- VISTA TREE: Pasantias/Configuracion/Nivel Academicoas -->
+    <record model="ir.ui.view" id="view_nivel_academico_tree">
+        <field name="name">nivel.academico.tree</field>
+        <field name="model">nivel.academico</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="nivel_academico">
+                <field name="codigo"/>
+                <field name="nivel_academico"/>
+
+            </tree>
+        </field>
+    </record>
+    <!-- FIN VISTA TREE: Pasantias/Configuracion/Nivel Academicoas -->
+
+    <!-- ACCION: Nivel Academicoas -->
+    <record model="ir.actions.act_window" id="action_nivel_academico">
+        <field name="name">Nivel Academicoas</field>
+        <field name="res_model">nivel.academico</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- FIN MODELO: Nivel Academicoas -->
+
+
+    <!-- MODELO: Registro de Condiciones de Registro -->    
+    <!-- VISTA FORM: Pasantias/Configuracion/Registro de Condiciones de Registro -->
+    <record model="ir.ui.view" id="view_condiciones_registro_form">
+        <field name="name">condiciones.registro.form</field>
+        <field name="model">condiciones.registro</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="condiciones.registro">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="condicion_registro" select="2"/>
+
+            </group>
+            </form>
+        </field>
+    </record>
+    <!-- FIN VISTA FORM: Pasantias/Configuracion/Registro de Condiciones de Registro -->
+
+    <!-- VISTA TREE: Pasantias/Configuracion/Registro de Condiciones de Registro -->
+    <record model="ir.ui.view" id="view_condiciones_registro_tree">
+        <field name="name">condiciones.registro.tree</field>
+        <field name="model">condiciones.registro</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="condiciones_registro">
+                <field name="codigo"/>
+                <field name="condicion_registro"/>
+
+            </tree>
+        </field>
+    </record>
+    <!-- FIN VISTA TREE: Pasantias/Configuracion/Registro de Condiciones de Registro -->
+
+    <!-- ACCION: Registro de Condiciones de Registro -->
+    <record model="ir.actions.act_window" id="action_condiciones_registro">
+        <field name="name">Registro de Condiciones de Registro</field>
+        <field name="res_model">condiciones.registro</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- FIN MODELO: Registro de Condiciones de Registro -->
+
+
+    <!-- MODELO: Registro de Turnos -->    
+    <!-- VISTA FORM: Pasantias/Configuracion/Registro de Turnos -->
+    <record model="ir.ui.view" id="view_turnos_form">
+        <field name="name">turnos.form</field>
+        <field name="model">turnos</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <form string="turnos">
+            <group col="4" colspan="2">
+                <field name="codigo" select="1"/>
+                <field name="turno" select="2"/>
+
+            </group>
+            </form>
+        </field>
+    </record>
+    <!-- FIN VISTA FORM: Pasantias/Configuracion/Registro de Turnos -->
+
+    <!-- VISTA TREE: Pasantias/Configuracion/Registro de Turnos -->
+    <record model="ir.ui.view" id="view_turnos_tree">
+        <field name="name">turnos.tree</field>
+        <field name="model">turnos</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <tree string="turnos">
+                <field name="codigo"/>
+                <field name="turno"/>
+
+            </tree>
+        </field>
+    </record>
+    <!-- FIN VISTA TREE: Pasantias/Configuracion/Registro de Turnos -->
+
+    <!-- ACCION: Registro de Turnos -->
+    <record model="ir.actions.act_window" id="action_turnos">
+        <field name="name">Registro de Turnos</field>
+        <field name="res_model">turnos</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- FIN MODELO: Registro de Turnos -->
+
+
+    <!-- TOP DE VISTAS  -->
+    <!-- VISTAS CALENDARIO  -->
+    <record model="ir.ui.view" id="pasantias_calendar_view">
+        <field name="name">pasantias.calendar</field>
+        <field name="model">pasantias</field>
+        <field name="arch" type="xml">
+            <calendar string="Calendario Pasantias" date_start="pasantia_desde" date_stop="pasantia_hasta" color="pasante_id">
+                <field name="pasante_id"/>
+            </calendar>
+        </field>
+    </record>
+    <!-- VISTA GANTT -->
+    <record model="ir.ui.view" id="pasantias_gantt_view">
+        <field name="name">pasantias.gantt</field>
+        <field name="model">pasantias</field>
+        <field name="arch" type="xml">
+            <gantt string="Pasantias Gantt" date_start="pasantia_desde" date_stop="pasantia_hasta" default_group_by='pasante_id'>
+            </gantt>
+        </field>
+    </record>
+    <!-- VISTA GRAFICO -->
+    <record model="ir.ui.view" id="pasantias_graph_view">
+        <field name="name">pasantias.graph</field>
+        <field name="model">pasantias</field>
+        <field name="arch" type="xml">
+            <graph string="Pasantias activas">
+                <field name="pasante_id"/>
+                <!--<field name="attendees_count" type="measure"/>-->
+            </graph>
+        </field>
+    </record>
+    <!-- VISTA KANBAN -->
+    <record model="ir.ui.view" id="view_pasantias_kanban">
+        <field name="name">pasantia.kanban</field>
+        <field name="model">pasantias</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="pasante_id">
+                <field name="pasante_id"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_color_{{kanban_getcolor(record.color.raw_value)}} oe_kanban_global_click_edit oe_semantic_html_override oe_kanban_card {{record.group_fancy==1 ? 'oe_kanban_card_fancy' : ''}}">
+                            <div class="oe_dropdown_kanban">
+                                <!-- dropdown menu -->
+                                <div class="oe_dropdown_toggle">
+                                    <i class="fa fa-bars fa-lg" title="Manage" aria-label="Manage"/>
+                                    <ul class="oe_dropdown_menu">
+                                        <li>
+                                            <a type="delete">Delete</a>
+                                        </li>
+                                        <li>
+                                            <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="oe_clear"></div>
+                            </div>
+                            <div t-attf-class="oe_kanban_content">
+                                <!-- title -->
+                                Nombre del Pasante:
+                                <field name="pasante_id"/>
+                                <br/>
+                                Fecha inicio:
+                                <field name="pasantia_desde"/>
+                                <br/>
+                                Fecha final:
+                                <field name="pasantia_hasta"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <!-- FIN TOP DE VISTAS  -->
+
+        
+
+    <!-- MENÚ PRINCIPAL -->
+    <menuitem name="Pasantias" id="men_pasantias"/>
+    <menuitem name="Registros Maestros" id="menu_pasantias_regmae" parent="men_pasantias" sequence="0"/>
+    
+    <!-- MENÚ SECUNDARIO: Pasantias/Registro Maestro de Pasantias -->
+    <menuitem name="Registro Maestro de Pasantias" id="regmae_pasantias" action="action_pasantias" parent="menu_pasantias_regmae"/>
+    <!-- Pasantias/Registro Maestro de Instituciones -->
+    <menuitem name="Registro Maestro de Instituciones" id="regmae_instituciones" action="action_instituciones" parent="menu_pasantias_regmae"/>
+     <!-- Pasantias/Registro Maestro de Pasantes -->
+<!--    <menuitem name="Registro Maestro de Pasantes" id="regmae_pasantes" action="action_pasantes" parent="menu_pasantias_regmae"/>-->
+    <!-- Pasantias/Registro Maestro de Convenios -->
+    <menuitem name="Registro Maestro de Convenios" id="regmae_convenios" action="action_convenios" parent="menu_pasantias_regmae"/> 
+    <!-- Pasantias/Registro Maestro de Promotores -->
+    <menuitem name="Registro Maestro de Promotores" id="regmae_promotores" action="action_promotores" parent="menu_pasantias_regmae"/>
+    <!-- Pasantias/Registro Maestro de Beneficiarios -->
+    <menuitem name="Registro Maestro de Beneficiarios" id="regmae_beneficiarios" action="action_beneficiarios" parent="menu_pasantias_regmae"/>
+
+    <!-- FIN MENÚ SECUNDARIO -->
+
+    <!-- MENÚ TERCERO -->
+    <menuitem name="Configuración" id="menu_config" parent="men_pasantias" sequence="20"/>
+
+    <!-- MENÚ TERCERO: Pasantias/Configuracion/Tipos de Alergias -->
+    <menuitem name="Tipos de Alergias" id="config_tipos_alergias" action="action_tipos_alergias" parent="menu_config"/>
+    <!-- Pasantias/Configuracion/Tipo de Pasantias -->
+    <menuitem name="Tipo de Pasantias" id="config_tipos_pasantias" action="action_tipos_pasantias" parent="menu_config"/>
+    <!-- Pasantias/Configuracion/Tipos de Especialidades -->
+    <menuitem name="Tipos de Especialidades" id="config_tipo_especialidades" action="action_tipo_especialidades" parent="menu_config"/>
+    <!-- Pasantias/Configuracion/Registro de Condicion de no Firmantes -->
+    <menuitem name="Registro de Condicion de no Firmantes" id="config_condicion_nofirmante" action="action_condicion_nofirmante" parent="menu_config"/>
+    <!-- Pasantias/Configuracion/Tipos de Instituciones -->
+    <menuitem name="Tipos de Instituciones" id="config_tipo_instituciones" action="action_tipo_instituciones" parent="menu_config"/>
+    <!-- Pasantias/Configuracion/Tipos de Parentesco -->
+    <menuitem name="Tipos de Parentesco" id="config_parentescos" action="action_parentescos" parent="menu_config"/>
+    <!-- Pasantias/Configuracion/Nivel Academicoas -->
+    <menuitem name="Nivel Academicoas" id="config_nivel_academico" action="action_nivel_academico" parent="menu_config"/>
+    <!-- Pasantias/Configuracion/Registro de Condiciones de Registro -->
+    <menuitem name="Registro de Condiciones de Registro" id="config_condiciones_registro" action="action_condiciones_registro" parent="menu_config"/>
+    <!-- Pasantias/Configuracion/Registro de Turnos -->
+    <menuitem name="Registro de Turnos" id="config_turnos" action="action_turnos" parent="menu_config"/>
+    <!-- FIN MENÚ TERCERO --> 
+
+</odoo>
