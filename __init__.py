@@ -10,7 +10,7 @@
 #    Junto con este programa. Si no es así, consulte <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-# Generado por el plugin Odoo V12 para Dia!
+# 
 #
 
 from . import models

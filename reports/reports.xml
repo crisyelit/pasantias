@@ -1,0 +1,37 @@
+<odoo>
+    <report
+        id="action_report_pasantias"
+        model="pasantias"
+        report_type="qweb-pdf"
+        string="Reporte de Pasantias"
+        name="pasantias.report_pasantias_template"
+        file="pasantias.report_pasantias_template"
+    />
+
+    <template id="report_pasantias_template">
+    	<t t-call="web.html_container">
+            <t t-call="web.external_layout">    
+                <div class="page">
+                        <!-- Report header content -->
+                    <div class="container">
+                        <div class="row bg-primary">
+                            <div class="col-3">Title</div>
+                            <div class="col-2">Publisher</div>
+                            <div class="col-2">Date</div>
+                            <div class="col-3">Publisher Address</div>
+                            <div class="col-2">Authors</div>
+                        </div>
+                    </div>
+                        <t t-foreach="docs" t-as="o">
+                            <!-- Report Row Content -->
+                            <div class="row">
+                                <h2>Reporte de Pasantias</h2>
+                                <p>PRUEBA<span t-field="o.name"/></p>
+                            </div>
+                        </t>
+                </div>
+                    <!-- Report footer content ...-->
+            </t>
+        </t>
+    </template>
+</odoo>

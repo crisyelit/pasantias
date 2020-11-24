@@ -10,18 +10,25 @@
 #    Junto con este programa. Si no es así, consulte <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-# Generado por el plugin Odoo V12 para Dia!
+
 {
-    'name': 'pasantias',
+    'name': 'Pasantias',
     'version': '0.1',
     'author': 'Ing. Jhuliana Delgado',
     'website': 'https://www.tucusitogroup.odoo.com',
     'category': 'Gestion',
     'sequence': 15,
-    'summary': 'Desconocida',
-    'description': """ Módulo para la Gestión Integral de los Procesos de Pasantías """,
+    'summary': 'Gestión Integral de los Procesos de Pasantías',
+    'description': """ Módulo para la Gestión Integral de los Procesos de Pasantías
+        Este modulo permite registrar todo los estudiantes a nivel tecnico medio y Universitario 
+    que necesitan realizar una pasantia para culminacion de su carrera, donde seran asignados 
+    por medio de un contrato a una Empresa sea privada o publica a ejecutar su pasantia.
+
+        Donde se apoya con Formularios para registro pasantes, institutos, empresas y contrato; 
+    General reportes de statud de contrato, filtros de pasantes activos, facturas pagadas o pendientes, 
+    Facturacion del contrato, como promotores a cargo del contrato. """,
     'depends': ['base'],
-    'data': ['security/ir.model.access.csv', 'views/pasantias_view.xml', 'reports.xml'],
+    'data': ['security/ir.model.access.csv', 'views/pasantias_view.xml', 'reports/reports.xml'],
     'demo': [ ],
     'css': [ ],
     'update_xml': [ ],

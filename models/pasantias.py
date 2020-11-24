@@ -10,10 +10,8 @@
 #    Junto con este programa. Si no es así, consulte <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
-# Generado por el plugin Odoo V12 para Dia!
-
-from odoo import api, fields, models, api, exceptions
-from datetime import timedelta
+from odoo import api, fields, models, api, exceptions;
+from datetime import timedelta;
 
 class pasantias(models.Model):
     """Tabla de Registro Maestro de Pasantias"""
@@ -55,13 +53,13 @@ class tipos_alergias(models.Model):
 
 class instituciones(models.Model):
     """Tabla Registro Maestro de Instituciones"""
-    #_name = 'instituciones'
     _inherit = 'res.company'
     #_rec_name = ''
     rif = fields.Char(string='RIF de la Institucion',default='RIF', traslate=True, readonly=False,  size=20, required=False, copy=True, help='RIF de la institucion')
     acronimo = fields.Char(string='Acronimo de la Institucion', default='Acronimo', size=20, traslate=True, readonly=False, required=False, copy=True, help='Acronimo de la Institucion')
-    tipo_institucion_id = fields.Many2one('tipos.instituciones', string='Tipo de Institucion', required=True, readonly=False, help='Tipo de Institucion')
+    tipo_instituciones_id = fields.Many2one('tipos.instituciones', string='Tipo de Institucion', required=True, readonly=False, help='Tipo de Institucion')
     user_ids = fields.Many2many('res.users', 'instituciones_users_rel', 'cid', 'user_id', string='Accepted Users')
+    
 
 class tipos_pasantias(models.Model):
     """Tabla referencial de tipos de pasantias"""
@@ -84,7 +82,10 @@ class pasantes(models.Model):
     # channel_ids = fields.Many2many('mail.channel',  string='Canales')
     # visitor_ids = ''
     # meeting_ids = ''
-
+    #razon_social_ids = fields.One2many('res.company','Empresa', string='Razon social de la Institucion',default='Razon social', traslate=True,  size=20, required='True', copy=True, help='Razon social de la Institucion')
+    empresa_ids = fields.One2many('convenios', 'empresa_id', string="Empresa", readonly=True, required=True, copy=False, help='Empresa donde se ejecuta la pasantia')
+    instructor = fields.Boolean("Instructor", default=False)
+    
 class tipo_especialidades(models.Model):
     """Tabla referencial de tipos de Especialidades"""
     _name = 'tipo.especialidades'

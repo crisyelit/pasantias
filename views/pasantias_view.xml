@@ -144,35 +144,32 @@
     </record>
     <!-- FIN MODELO: Tipos de Alergias -->
 
-    
+    <!-- Inherit Form View to Modify it -->
     <!-- MODELO: Registro Maestro de Instituciones -->  
     <!-- VISTA FORM: Pasantias/Registro Maestro de Instituciones -->
-    <record model="ir.ui.view" id="view_instituciones_form">
+    <record model="ir.ui.view" id="view_instituciones_form_extend">
         <field name="name">instituciones.form</field>
-        <field name="model">instituciones</field>
-        <field name="type">form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
         <field name="arch" type="xml">
-            <form string="instituciones">
-            <group col="4" colspan="2">
+            <xpath expr="//notebook/page/group/group" position="inside">
                 <field name="rif" select="1"/>
                 <field name="acronimo" select="0"/>
-            </group>
-            </form>
+            </xpath>
         </field>
     </record>
     <!-- FIN VISTA FORM: Pasantias/Registro Maestro de Instituciones -->
 
     <!-- VISTA TREE: Pasantias/Registro Maestro de Instituciones -->
-    <record model="ir.ui.view" id="view_instituciones_tree">
+    <record model="ir.ui.view" id="view_instituciones_tree_extend">
         <field name="name">instituciones.tree</field>
-        <field name="model">instituciones</field>
-        <field name="type">tree</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_tree"/>
         <field name="arch" type="xml">
-            <tree string="instituciones">
+            <xpath expr="//tree" position="inside">
                 <field name="rif"/>
                 <field name="acronimo"/>
-
-            </tree>
+            </xpath>
         </field>
     </record>
     <!-- FIN VISTA TREE: Pasantias/Registro Maestro de Instituciones -->
@@ -180,7 +177,7 @@
     <!-- ACCION: Registro Maestro de Instituciones -->
     <record model="ir.actions.act_window" id="action_instituciones">
         <field name="name">Registro Maestro de Instituciones</field>
-        <field name="res_model">instituciones</field>
+        <field name="res_model">res.company</field>
         <field name="view_mode">tree,form</field>
     </record>
     <!-- FIN MODELO: Registro Maestro de Instituciones -->
@@ -226,53 +223,6 @@
         <field name="view_mode">tree,form</field>
     </record>
     <!-- FIN MODELO: Tipo de Pasantias -->
-
-
-    <!-- MODELO: Registro Maestro de Pasantes -->
-    <!-- VISTA FORM: Pasantias/Registro Maestro de Pasantes -->
-<!--    <record model="ir.ui.view" id="view_pasantes_form">-->
-<!--        <field name="name">pasantes.form</field>-->
-<!--        <field name="model">res.partner</field>-->
-<!--        <field name="type">form</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <form string="pasantes">-->
-<!--            <group col="4" colspan="2">-->
-<!--                <field name="cedula" select="1"/>-->
-<!--                <field name="zurdo" select="0"/>-->
-<!--                <field name="alergias" select="0"/>-->
-<!--                <field name="tipo_alergia" select="0"/>-->
-<!--                <field name="especialidad" select="0"/>-->
-<!--                <field name="nivel_educativo" select="0"/>-->
-<!--            </group>-->
-<!--            </form>-->
-<!--        </field>-->
-<!--    </record>-->
-    <!-- FIN VISTA FORM: Pasantias/Registro Maestro de Pasantes -->
-
-    <!-- VISTA TREE: Pasantias/Registro Maestro de Pasantes -->
-<!--    <record model="ir.ui.view" id="view_pasantes_tree">-->
-<!--        <field name="name">pasantes.tree</field>-->
-<!--        <field name="model">pasantes</field>-->
-<!--        <field name="type">tree</field>-->
-<!--        <field name="arch" type="xml">-->
-<!--            <tree string="pasantes">-->
-<!--                <field name="cedula"/>-->
-<!--                <field name="especialidad"/>-->
-<!--                <field name="nivel_educativo"/>-->
-
-<!--            </tree>-->
-<!--        </field>-->
-<!--    </record>-->
-    <!-- FIN VISTA TREE: Pasantias/Registro Maestro de Pasantes -->
-
-    <!-- ACCION: Registro Maestro de Pasantes -->
-<!--    <record model="ir.actions.act_window" id="action_pasantes">-->
-<!--        <field name="name">Registro Maestro de Pasantes</field>-->
-<!--        <field name="res_model">pasantes</field>-->
-<!--        <field name="view_mode">tree,form</field>-->
-<!--    </record>-->
-    <!-- FIN MODELO: Registro Maestro de Pasantes -->
-
 
     <!-- MODELO: Tipos de Especialidades -->       
     <!-- VISTA FORM: Pasantias/Configuracion/Tipos de Especialidades -->
